@@ -6,7 +6,7 @@ const app = express()
 
 const posts = {}
 
-app.use(body_parser)
+app.use(body_parser.json())
 
 app.get("/posts", (req, res) => {
 
@@ -16,7 +16,7 @@ app.get("/posts", (req, res) => {
 
 app.post("/posts", (req, res) => {
 
-    const title = req.body//extract the title from the body
+    const title = req.body.title//extract the title from the body
     const id = randomBytes(4).toString("hex")//generate a random string for the id
 
     posts[id] = {
@@ -30,5 +30,5 @@ app.post("/posts", (req, res) => {
 app.listen(4000, () => {
 
     console.log("Server running")
-    
+
 })
