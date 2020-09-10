@@ -10,13 +10,12 @@ const PostCreate = () => {
 
         e.preventDefault()
 
-        const response = await axios.post("http://localhost:4000/posts", {
+        await axios.post("http://localhost:4000/posts", {
 
             title: title
 
         })
 
-        console.log(response)
         set_title("")
 
     }
