@@ -2,6 +2,7 @@ const express = require("express")
 const { randomBytes } = require("crypto")
 const body_parser = require("body-parser")
 const cors = require("cors")
+const axios = require("axios")
 
 const app = express()
 
@@ -17,7 +18,7 @@ app.get("/posts", (req, res) => {
 
 })
 
-app.post("/posts", (req, res) => {
+app.post("/posts", async (req, res) => {
 
     const title = req.body.title//extract the title from the body
     const id = randomBytes(4).toString("hex")//generate a random string for the id
@@ -26,12 +27,29 @@ app.post("/posts", (req, res) => {
         id, title
     }
 
+   await axios.post("http://localhost:4005/events", {//send the event to the event bus
+
+        type:"PostCreated",
+        data:{
+            id:id,
+            title:title
+        }
+
+    })
+
     res.status(201).send(posts[id])
 
 })
 
+app.post("/events", (req, res) => {
+
+    const event = req.body
+    console.log(event)
+    
+})
+
 app.listen(4000, () => {
 
-    console.log("Server running")
+    console.log("Posts running on 4000")
 
 })

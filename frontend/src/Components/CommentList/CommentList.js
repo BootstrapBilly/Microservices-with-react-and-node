@@ -13,6 +13,7 @@ const CommentList = ({ post_id }) => {
 
     }
 
+    // eslint-disable-next-line
     useEffect(() => { fetch_comments() }, [])
 
 
@@ -31,6 +32,7 @@ const CommentList = ({ post_id }) => {
 
             })
             }
+            
         </ul>
 
     )

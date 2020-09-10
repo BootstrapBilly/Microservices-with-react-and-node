@@ -28,11 +28,10 @@ export const PostList = () => {
                     .map(post =>
 
                         <div className="card d-flex p-4" style={{ width: "30%", marginBottom: "20px" }} key={post.id}>
-                            
+
                             <CommentList post_id={post.id} />
                             <h3>{post.title}</h3>
                             <CommentCreate post_id={post.id} />
-
 
                         </div>)//then iterate as normal
             }
