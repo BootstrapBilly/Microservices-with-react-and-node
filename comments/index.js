@@ -25,7 +25,7 @@ app.post("/posts/:id/comments", async (req, res) => {
 
     const comments = comments_by_post_id[req.params.id] || []//get the existing comments for the post
 
-    comments.push({ id: id, content: content })//push in the new comment
+    comments.push({ id: id, content: content, status:"pending" })//push in the new comment
 
     comments_by_post_id[req.params.id] = comments//update the comments object to show the new comments
 
@@ -44,10 +44,26 @@ app.post("/posts/:id/comments", async (req, res) => {
     res.status(201).send(comments_by_post_id)
 })
 
-app.post("/events", (req, res) => {
+app.post("/events", async (req, res) => {
 
     const event = req.body
 
+    if(event.type === "CommentModerated"){
+
+        const comment_to_update = comments_by_post_id[event.data.post_id].find(comment => comment.id === event.data.id)
+        comment_to_update.status = event.data.status
+
+        await axios.post("http://localhost:4005/events", {
+
+            type: "CommentUpdated",
+            data: {
+                ...event.data,
+                status: event.data.status
+            }
+    
+        })
+
+    }
     res.json({message:"event caught"})
 
 })
