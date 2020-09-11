@@ -34,9 +34,10 @@ app.post("/posts/:id/comments", async (req, res) => {
         type: "CommentCreated",
         data: {
             id: id,
-            content: content
+            content: content,
+            post_id:req.params.id
         }
-        
+
     })
 
     res.status(201).send(comments_by_post_id)
@@ -45,7 +46,8 @@ app.post("/posts/:id/comments", async (req, res) => {
 app.post("/events", (req, res) => {
 
     const event = req.body
-    console.log(event)
+
+    res.json({message:"event caught"})
 
 })
 

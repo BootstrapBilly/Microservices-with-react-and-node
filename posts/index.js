@@ -44,8 +44,8 @@ app.post("/posts", async (req, res) => {
 app.post("/events", (req, res) => {
 
     const event = req.body
-    console.log(event)
     
+    res.json({message:"event caught"})
 })
 
 app.listen(4000, () => {

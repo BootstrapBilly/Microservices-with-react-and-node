@@ -11,9 +11,9 @@ export const PostList = () => {
 
     const fetch_posts = async () => {
 
-        const response = await axios.get("http://localhost:4000/posts")
+        const response = await axios.get("http://localhost:4002/posts")
 
-        set_posts(response.data)
+        set_posts(response.data.posts)
 
     }
 
@@ -29,7 +29,7 @@ export const PostList = () => {
 
                         <div className="card d-flex p-4" style={{ width: "30%", marginBottom: "20px" }} key={post.id}>
 
-                            <CommentList post_id={post.id} />
+                            <CommentList post_id={post.id} comments={post.comments}/>
                             <h3>{post.title}</h3>
                             <CommentCreate post_id={post.id} />
 
