@@ -10,11 +10,21 @@ app.post("/events", (req, res) => {
 
     const event = req.body//extract the event from the req body
 
+    if (event.type === "CommentModerated") {
+
+        axios.post("http://localhost:4001/events", event)
+        return axios.post("http://localhost:4002/events", event)
+        
+    }
+
+    //fire out the event to the services which need it
     axios.post("http://localhost:4000/events", event)
     axios.post("http://localhost:4001/events", event)
     axios.post("http://localhost:4002/events", event)
+    axios.post("http://localhost:4003/events", event)//moderation service
 
-    res.json({status:"OK"})
+
+    res.json({ status: "OK" })
 
 })
 

@@ -35,7 +35,8 @@ app.post("/posts/:id/comments", async (req, res) => {
         data: {
             id: id,
             content: content,
-            post_id:req.params.id
+            post_id:req.params.id,
+            status:"pending"
         }
 
     })
