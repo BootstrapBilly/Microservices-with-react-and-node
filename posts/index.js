@@ -50,6 +50,7 @@ app.post("/events", (req, res) => {
 
 app.listen(4000, () => {
 
+    console.log("updateddcd")
     console.log("Posts running on 4000")
 
 })
