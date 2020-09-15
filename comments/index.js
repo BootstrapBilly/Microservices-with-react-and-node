@@ -29,7 +29,7 @@ app.post("/posts/:id/comments", async (req, res) => {
 
     comments_by_post_id[req.params.id] = comments//update the comments object to show the new comments
 
-    await axios.post("http://localhost:4005/events", {
+    await axios.post("http://event-bus-service:4005/events", {
 
         type: "CommentCreated",
         data: {
@@ -53,7 +53,7 @@ app.post("/events", async (req, res) => {
         const comment_to_update = comments_by_post_id[event.data.post_id].find(comment => comment.id === event.data.id)
         comment_to_update.status = event.data.status
 
-        await axios.post("http://localhost:4005/events", {
+        await axios.post("http://event-bus-service:4005/events", {
 
             type: "CommentUpdated",
             data: {

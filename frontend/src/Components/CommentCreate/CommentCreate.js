@@ -12,7 +12,7 @@ const CommentCreate = ({ post_id }) => {
 
         e.preventDefault()
 
-        await axios.post(`http://localhost:4001/posts/${post_id}/comments`, {
+        await axios.post(`http://localhost:32652/posts/${post_id}/comments`, {
 
             content: comment
 

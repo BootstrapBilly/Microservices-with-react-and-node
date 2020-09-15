@@ -11,7 +11,7 @@ export const PostList = () => {
 
     const fetch_posts = async () => {
 
-        const response = await axios.get("http://localhost:4002/posts")
+        const response = await axios.get("http://localhost:32565/posts")
 
         set_posts(response.data.posts)
 
