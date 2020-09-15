@@ -27,7 +27,7 @@ app.post("/posts", async (req, res) => {
         id, title
     }
 
-   await axios.post("http://localhost:4005/events", {//send the event to the event bus
+   await axios.post("http://event-bus-service:4005/events", {//send the event to the event bus
 
         type:"PostCreated",
         data:{
