@@ -11,7 +11,7 @@ export const PostList = () => {
 
     const fetch_posts = async () => {
 
-        const response = await axios.get("http://localhost:32565/posts")
+        const response = await axios.get("http://posts.com/posts")
 
         set_posts(response.data.posts)
 
@@ -19,11 +19,13 @@ export const PostList = () => {
 
     useEffect(() => { fetch_posts() }, [])
 
+console.log(posts)
+
     return (
 
         <div className="d-flex flex-row flex-wrap justify-content-between">
 
-            {
+            { posts &&
                 Object.values(posts)//First convert the object to an array
                     .map(post =>
 

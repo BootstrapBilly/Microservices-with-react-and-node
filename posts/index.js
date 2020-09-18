@@ -12,13 +12,7 @@ app.use(cors())
 
 app.use(body_parser.json())
 
-app.get("/posts", (req, res) => {
-
-    res.send(posts)
-
-})
-
-app.post("/posts", async (req, res) => {
+app.post("/posts/create", async (req, res) => {
 
     const title = req.body.title//extract the title from the body
     const id = randomBytes(4).toString("hex")//generate a random string for the id

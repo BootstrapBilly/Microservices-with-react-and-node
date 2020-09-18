@@ -10,7 +10,7 @@ const PostCreate = () => {
 
         e.preventDefault()
 
-        await axios.post("http://localhost:32529/posts", {
+        await axios.post("http://posts.com/posts/create", {
 
             title: title
 
